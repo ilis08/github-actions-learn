@@ -23,3 +23,14 @@ jobs:
         with:
           inlinescript: |
             az deployment sub create --location "North Europe" --template-file ./arm-templates/resourcegroup.json
+
+      - name: Deploy Storage Account
+        uses: Azure/arm-deploy@v1
+        with:
+            scope: resourcegroup
+            resourceGroupName: rg-githubactions
+            subscriptionId: df77234d-98b5-4c24-bacd-297f397be719
+            template: ./arm-templates/storageaccount.json
+            parameters: ./arm-templates/storageaccount.parameters.json
+            deploymentMode: incremental
+   
